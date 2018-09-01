@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Sports.Football.Web.Controllers
@@ -21,6 +18,8 @@ namespace Sports.Football.Web.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
+
+            var json = "{  \"competition\":{      \"id\": 2144,      \"area\": {        \"id\": 2000,        \"name\": \"Afghanistan\"      },      \"name\": \"Playoffs 2/3\",      \"code\": null,      \"plan\": \"TIER_FOUR\",      \"currentSeason\": {        \"id\": 212,        \"startDate\": \"2018-05-22\",        \"endDate\": \"2018-05-27\",        \"currentMatchday\": null      },      \"numberOfAvailableSeasons\": 1,      \"lastUpdated\": \"2018-07-13T13:34:06Z\"    }}";
             return "value";
         }
 
