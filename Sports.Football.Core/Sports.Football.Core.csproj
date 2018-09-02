@@ -5,7 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Sports.Football.Data\Sports.Football.Data.csproj" />
+    <ProjectReference Include="..\Sports.Football.Domain\Sports.Football.Repositories.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Http">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.http\2.1.1\lib\netstandard2.0\Microsoft.Extensions.Http.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

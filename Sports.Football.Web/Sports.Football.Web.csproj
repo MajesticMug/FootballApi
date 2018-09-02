@@ -10,6 +10,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sports.Football.Core\Sports.Football.Core.csproj" />
+    <ProjectReference Include="..\Sports.Football.Domain\Sports.Football.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

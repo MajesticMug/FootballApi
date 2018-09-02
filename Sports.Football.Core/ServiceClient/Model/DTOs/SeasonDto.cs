@@ -1,9 +1,9 @@
 ﻿using System;
-using Sports.Football.Data.Model.Base;
+using Sports.Football.Core.ServiceClient.Model.DTOs.Base;
 
-namespace Sports.Football.Data.Model
+namespace Sports.Football.Core.ServiceClient.Model.DTOs
 {
-    public class Season : BaseModel
+    public class SeasonDto : BaseDto
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
