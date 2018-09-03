@@ -24,7 +24,6 @@ namespace Sports.Football.Web.Controllers
         [ProducesResponseType(404)]
         [ProducesResponseType(409)]
         [ProducesResponseType(504)]
-        // GET: import-league/BL1
         [HttpGet("{leagueCode}")]
 
         public async Task<IActionResult> Import(string leagueCode)
