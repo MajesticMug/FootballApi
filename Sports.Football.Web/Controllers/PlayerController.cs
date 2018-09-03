@@ -18,8 +18,7 @@ namespace Sports.Football.Web.Controllers
         {
             _componentsProvider = componentsProvider;
         }
-
-        // GET: import-league/total-players/BL1
+        
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         [HttpGet("{leagueCode}")]
@@ -30,12 +29,12 @@ namespace Sports.Football.Web.Controllers
                 var playerCount
                     = await _componentsProvider.FootballManager.GetTotalPlayers(leagueCode);
 
-                return StatusCode((int)HttpStatusCode.OK, new { total = playerCount });
+                return Ok(new {total = playerCount});
             }
             catch (CompetitionNotFoundException)
             {
                 _componentsProvider.LogManager.Info($"League with code {leagueCode} was not found");
-                return StatusCode((int)HttpStatusCode.NotFound);
+                return NotFound();
             }
             catch (Exception e)
             {

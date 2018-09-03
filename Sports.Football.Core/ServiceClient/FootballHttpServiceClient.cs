@@ -8,13 +8,13 @@ namespace Sports.Football.Core.ServiceClient
 {
     public class FootballHttpServiceClient : IServiceClient
     {
-        private readonly HttpClient _httpClient;
+        private readonly IHttpClientWrapper _httpClient;
 
-        public FootballHttpServiceClient(HttpClient httpClient)
+        public FootballHttpServiceClient(IHttpClientWrapper httpClient)
         {
             _httpClient = httpClient;
         }
-        
+
         public async Task<TRoot> GetRootAsync<TRoot>(string uri)
         {
             var response = await _httpClient.GetAsync(uri);

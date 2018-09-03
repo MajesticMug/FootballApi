@@ -56,9 +56,9 @@ namespace Sports.Football.Web
 
         public void RegisterCoreComponents(IServiceCollection services)
         {
-            services.AddScoped<IServiceClient, FootballHttpServiceClient>();
+            services.AddScoped<IHttpClientWrapper, HttpClientWrap>();
 
-            services.AddHttpClient<IServiceClient, FootballHttpServiceClient>(client =>
+            services.AddHttpClient<IHttpClientWrapper, HttpClientWrap>(client =>
             {
                 client.BaseAddress = new Uri(Configuration["HttpServiceClient:Football:BaseAddress"]);
                 client.DefaultRequestHeaders.Add("x-auth-token", Configuration["HttpServiceClient:Football:Token"]);
@@ -66,6 +66,8 @@ namespace Sports.Football.Web
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
             });
+
+            services.AddScoped<IServiceClient, FootballHttpServiceClient>();
 
             services.AddSingleton<ILogManager, TracerLogManager>();
 

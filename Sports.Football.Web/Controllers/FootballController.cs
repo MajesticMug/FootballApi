@@ -42,12 +42,12 @@ namespace Sports.Football.Web.Controllers
             catch (CompetitionNotFoundException)
             {
                 _componentsProvider.LogManager.Warn($"Requested league with code '{leagueCode}' was not found");
-                return StatusCode((int) HttpStatusCode.NotFound, new { Message = "Not found" });
+                return NotFound(new { Message = "Not found" });
             }
             catch (CompetitionAlreadyImportedException)
             {
                 _componentsProvider.LogManager.Info($"League with code '{leagueCode}' was already imported");
-                return StatusCode((int) HttpStatusCode.Conflict, new { Message = "League already imported" });
+                return Conflict(new { Message = "League already imported" });
             }
             catch (RequestNumberLimitExceededException e)
             {

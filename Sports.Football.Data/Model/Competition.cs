@@ -11,7 +11,7 @@ namespace Sports.Football.Data.Model
         public string LeagueCode { get; set; }
         public Season CurrentSeason { get; set; }
         public int NumberOfAvailableSeasons { get; set; }
-        public DateTime LastUpdated { get; set; }
+        public DateTime? LastUpdated { get; set; }
 
         public List<CompetitionTeam> CompetitionTeams { get; set; } = new List<CompetitionTeam>();
     }
