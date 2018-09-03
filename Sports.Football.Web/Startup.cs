@@ -10,9 +10,9 @@ using Sports.Football.Core.Components;
 using Sports.Football.Core.ServiceClient;
 using Sports.Football.Core.ServiceClient.Mappers;
 using Sports.Football.Data;
-using Sports.Football.Data.Model;
 using Sports.Football.Repositories.Implementations;
 using Sports.Football.Repositories.Interfaces;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Sports.Football.Web
 {
@@ -29,9 +29,29 @@ namespace Sports.Football.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            SetupSwagger(services);
             RegisterCoreComponents(services);
             RegisterRepositories(services);
             SetupDb(services);
+        }
+
+        private void SetupSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Football Data Import API",
+                    Description = "Meant to import data from from some API",
+                    TermsOfService = "None",
+                    Contact = new Contact()
+                    {
+                        Name = "Javier Capello",
+                        Email = "javier.h.capello@gmail.com",
+                        Url = "https://www.linkedin.com/in/javier-h-capello/"
+                    }
+                });
+            });
         }
 
         public void RegisterCoreComponents(IServiceCollection services)
@@ -93,12 +113,17 @@ namespace Sports.Football.Web
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<FootballDbContext>();
-                //context.Database.EnsureDeleted();
+                
                 context.Database.EnsureCreated();
             }
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Football Data Import API");
+            });
         }
     }
 }
