@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Sports.Football.Core.Model.Exceptions;
@@ -33,9 +32,9 @@ namespace Sports.Football.Core.Components
 
         public async Task ImportLeagueFromApiAsync(string leagueCode)
         {
-            var matchingCompetition = await _competitionRepository.GetByLeagueCodeAsync(leagueCode);
+            var competitionAlreadyImported = await _competitionRepository.ExistsAsync(c => leagueCode.Equals(c.LeagueCode));
 
-            if (matchingCompetition != null)
+            if (competitionAlreadyImported)
             {
                 throw new CompetitionAlreadyImportedException($"Competition with code '{leagueCode}' is already imported");
             }
@@ -59,6 +58,7 @@ namespace Sports.Football.Core.Components
             {
                 try
                 {
+                    // todo: these can be done in parallel, maybe
                     var players = await _footballClient.GetPlayersByTeamAsync(team);
                     await _playerRepository.AddPlayersToTeamAsync(team, players.ToList());
                 }

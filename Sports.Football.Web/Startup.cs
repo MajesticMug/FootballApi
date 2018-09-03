@@ -38,6 +38,7 @@ namespace Sports.Football.Web
         private void SetupSwagger(IServiceCollection services)
         {
             services.AddSwaggerGen(c => {
+                // todo: put these in a config file
                 c.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
