@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sports.Football.Data\Sports.Football.Data.csproj" />
-    <ProjectReference Include="..\Sports.Football.Domain\Sports.Football.Repositories.csproj" />
+    <ProjectReference Include="..\Sports.Football.Repositories\Sports.Football.Repositories.csproj" />
   </ItemGroup>
 
   <ItemGroup>
